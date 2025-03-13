@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style_result.css')}}">
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <p><b>Prediction:</b> {{ prediction }}</p>
+    <p><b>Certainty:</b> {{ certainty }}%</p>
+    <img src="{{ url_for('static', filename=image_path.split('static/')[1]) }}" alt="Uploaded Image" style="max-width: 400px;">
+    <a href="/form">Upload Another Image</a>
+</body>
+</html>

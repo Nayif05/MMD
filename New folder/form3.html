@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malaria Detection System</title>
+    <link rel="stylesheet" href="mini.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Malaria Detection from Blood Cell Images</h1>
+            <p>Upload a blood cell image for malaria infection detection</p>
+        </div>
+    </header>
+
+    <section class="upload-section">
+        <div class="container">
+            <h2>Upload Image</h2>
+            <form id="uploadForm" action="upload.php" method="POST" enctype="multipart/form-data">
+                <input type="file" name="cellImage" id="cellImage" accept="image/*" required>
+                <button type="submit">Upload Image</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="malaria-info">
+        <div class="container">
+            <h2>What is Malaria?</h2>
+            <p>Malaria is a life-threatening disease caused by parasites that are transmitted to humans through the bites of infected female Anopheles mosquitoes. The disease is widespread in tropical and subtropical regions, including parts of Africa, Asia, and Latin America.</p>
+
+            <h3>Symptoms of Malaria:</h3>
+            <ul>
+                <li>Fever</li>
+                <li>Chills</li>
+                <li>Headache</li>
+                <li>Vomiting</li>
+                <li>Fatigue</li>
+            </ul>
+
+            <h3>How Malaria Affects the Blood Cells:</h3>
+            <p>Malaria parasites invade and destroy red blood cells. A microscope slide with a blood sample can be examined for the presence of malaria parasites in the cells. Malaria can be diagnosed through this method, and treatment can begin promptly.</p>
+        </div>
+    </section>
+        <div class="container">
+            <p>Developed by Team 11 | &copy; 2025</p>
+        </div>
+    </footer>
+</body>
+</html>

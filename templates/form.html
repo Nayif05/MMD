@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Image</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_inputpage.css') }}">
+</head>
+<body>
+    <h1>Upload an Image</h1>
+    <form action="/form" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <button type="submit">Upload and Predict</button>
+    </form>
+
+    <!-- Signout Option -->
+    <div class="signout">
+        <p>Welcome, {{ session.username }}!</p>
+        <a href="{{ url_for('logout') }}">Sign Out</a>
+    </div>
+</body>
+</html>

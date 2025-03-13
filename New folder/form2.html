@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malaria Detection</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #e6e6fa, #d8bfd8);
+      color: #4b0082;
+    }
+
+    header {
+      background: linear-gradient(135deg, #800080, #4b0082);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .upload-section {
+      text-align: center;
+      padding: 40px;
+      background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .upload-section label {
+      display: inline-block;
+      padding: 15px 30px;
+      background: #800080;
+      color: white;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .upload-section label:hover {
+      background: #4b0082;
+    }
+
+    .result {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #4b0082;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Malaria Detection</h1>
+    <p style="color: white;">Upload an image of a blood sample to detect malaria infection.</p>
+  </header>
+
+  <div class="container">
+    <div class="upload-section">
+      <img src="https://img.icons8.com/color/96/000000/blood-sample.png" alt="Blood Sample Icon">
+      <h2>Upload Blood Sample Image</h2>
+      <p>Select an image of a blood sample to analyze for malaria.</p>
+      <input type="file" id="file-input" accept="image/*">
+      <label for="file-input">Choose Image</label>
+    </div>
+
+    <div class="result">
+      <h2>Result</h2>
+      <img src="https://via.placeholder.com/100" alt="Result Icon">
+      <p id="result-text">Please upload an image to see the result.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2023 Malaria Detection Project</p>
+  </footer>
+
+  <script>
+    document.getElementById('file-input').addEventListener('change', async (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const response = await fetch('/upload', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const result = await response.json();
+        document.getElementById('result-text').textContent = `The blood sample is ${result.status}.`;
+      }
+    });
+  </script>
+</body>
+</html>
