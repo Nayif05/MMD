@@ -1,20 +1,130 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Upload Image</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_inputpage.css') }}">
-</head>
-<body>
-    <h1>Upload an Image</h1>
-    <form action="/form" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" accept="image/*" required>
-        <button type="submit">Upload and Predict</button>
-    </form>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Malaria Detection</title>
+        <style>
+            body {
+                background-color: #89ebe2;
+                margin: 0;
+                font-family: Arial, sans-serif;
+            }
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                position: relative;
+                text-align: center;
+            }
+            #logo {
+                height: 150px;
+                width: 150px;
+            }
+            h1 {
+                color: #007bff;
+                font-size: 36px;
+                margin: 10px 0;
+            }
+            h4 {
+                font-size: 20px;
+                margin-bottom: 30px;
+            }
+            #file-upload {
+                display: none;
+            }
+            #imageBtn {
+                background-color: #28a745;
+                color: white;
+                border: none;
+                padding: 15px 30px;
+                font-size: 18px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+            #imageBtn:hover {
+                background-color: #218838;
+            }
+            .signout {
+                margin-top: 20px;
+                text-align: center;
+            }
+            .signout a {
+                color: #ff0000;
+                text-decoration: none;
+            }
+            .signout a:hover {
+                text-decoration: underline;
+            }
+            #asset1 {
+                position: absolute;
+                left: 0px;
+                bottom: 0px;
+                width: 250px;
+            }
+            #asset2 {
+                position: absolute;
+                right: 0px;
+                top: 0px;
+                width: 250px;
+            }
+            #asset3 {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                width: 250px;
+            }
+            .signout-container {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-family: Arial, sans-serif;
+            }
+            .signout-container a {
+                color: #ff0000;
+                text-decoration: none;
+            }
+            .signout-container a:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <img id="asset3" src="{{ url_for('static', filename='images/input_page_asset3.png') }}" alt="Asset 3">
+            <img id="asset2" src="{{ url_for('static', filename='images/input_page_asset2.png') }}" alt="Asset 2">
+            <div class="content">
+                <img id="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Malaria Detection Logo">
+                <h1>Input Form</h1>
+                <h4>Upload the image below!</h4>
+                <form action="/form" method="POST" enctype="multipart/form-data">
+                    <label for="file-upload" id="imageBtn">Select an Image</label>
+                    <input type="file" id="file-upload" name="file" accept="image/*" required>
+                    <button type="submit" style="display: none;">Upload and Predict</button>
+                </form>
+            </div>
+            <img id="asset1" src="{{ url_for('static', filename='images/input_page_asset1.png') }}" alt="Asset 1">
+        </div>
+        <div class="signout">
+            <p>Welcome, {{ session.username }}!</p>
+            <a href="{{ url_for('logout') }}">Sign Out</a>
+        </div>
+            <!-- Signout Option -->
+            <div class="signout-container">
+                <p>Welcome, {{ session.username }}!</p>
+                <a href="{{ url_for('logout') }}">Sign Out</a>
+        </div>
+    </body>
+    </html>
 
-    <!-- Signout Option -->
-    <div class="signout">
-        <p>Welcome, {{ session.username }}!</p>
-        <a href="{{ url_for('logout') }}">Sign Out</a>
-    </div>
-</body>
-</html>
+    <script>
+        document.getElementById('file-upload').addEventListener('change', function() {
+            this.form.submit();
+        });
+    </script>
