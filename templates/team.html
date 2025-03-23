@@ -1,88 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Team Page</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/team.css')}}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-</head>
-<body>
-    <div class="wrapper">
-    <h1>Project Mentor</h1>
-    <div class="our_team">
-        <div class="team_member">
-          <div class="member_img">
-             <img class="mx-auto rounded-circle" src="{{url_for('static', filename='img/team/0.jpg')}}" alt="" />
+{% extends "base.html" %}
 
-            <div class="social_media">
-               <a href="{{params['project_admin_github_url']}}" target="_blank">
-               <div class="github item"><i class="fab fa-github"></i></div></a>
-               <a href="{{params['project_admin_linkedin_url']}}" target="_blank">
-               <div class="twitter item"><i class="fab fa-linkedin"></i></div></a>
-             </div>
-          </div>
-          <h3>{{params['project_admin_name']}}</h3>
+{% block title %}Team - MMD App{% endblock %}
 
+{% block content %}
+    <section class="team-container">
+        <h2>Our Team</h2>
+        <div class="team-members">
+            <div class="member">
+                <img src="{{ url_for('static', filename='images/member1.jpg') }}" alt="Member 1">
+                <h3>John Doe</h3>
+                <p>Lead Developer</p>
+            </div>
+            <div class="member">
+                <img src="{{ url_for('static', filename='images/member2.jpg') }}" alt="Member 2">
+                <h3>Jane Smith</h3>
+                <p>Data Scientist</p>
+            </div>
+            <div class="member">
+                <img src="{{ url_for('static', filename='images/member3.jpg') }}" alt="Member 3">
+                <h3>Mike Johnson</h3>
+                <p>UI/UX Designer</p>
+            </div>
         </div>
-    </div>
-</div>
-
-<div class="members_part">
-<div class="wrapper">
-    <h1>Members</h1>
-    <div class="our_team">
-        <div class="team_member">
-          <div class="member_img">
-             <img class="mx-auto rounded-circle" src="{{url_for('static', filename='img/team/1.jpg')}}" alt="" />
-
-            <div class="social_media">
-               <a href="{{params['1_mentor_github_url']}}" target="_blank">
-               <div class="github item"><i class="fab fa-github"></i></div></a>
-               <a href="{{params['1_mentor_linkedin_url']}}" target="_blank">
-               <div class="linkedin item"><i class="fab fa-linkedin"></i></div></a>
-             </div>
-          </div>
-          <h3>{{params['1_mentor_name']}}</h3>
-
-        </div>
-        <div class="team_member">
-           <div class="member_img">
-             <img class="mx-auto rounded-circle" src="{{url_for('static', filename='img/team/2.jpg')}}" alt="" />
-             <div class="social_media">
-               <a href="{{params['2_mentor_github_url']}}" target="_blank">
-               <div class="github item"><i class="fab fa-github"></i></div></a>
-               <a href="{{params['2_mentor_linkedin_url']}}" target="_blank">
-               <div class="linkedin item"><i class="fab fa-linkedin"></i></div></a>
-             </div>
-          </div>
-          <h3>{{params['2_mentor_name']}}</h3>
-
-      </div>
-        <div class="team_member">
-           <div class="member_img">
-             <img class="mx-auto rounded-circle" src="{{url_for('static', filename='img/team/3.jpg')}}" alt="" />
-             <div class="social_media">
-               <a href="{{params['3_mentor_github_url']}}" target="_blank">
-               <div class="github item"><i class="fab fa-github"></i></div></a>
-               <a href="{{params['3_mentor_linkedin_url']}}" target="_blank">
-               <div class="linkedin item"><i class="fab fa-linkedin"></i></div></a>
-             </div>
-          </div>
-          <h3>{{params['3_mentor_name']}}</h3>
-
-      </div>
-        <div class="team_member">
-           <div class="member_img">
-             <img class="mx-auto rounded-circle" src="{{url_for('static', filename='img/team/4.jpg')}}" alt="" />
-             <div class="social_media">
-               <a href="{{params['4_mentor_github_url']}}" target="_blank">
-               <div class="github item"><i class="fab fa-github"></i></div></a>
-               <a href="{{params['4_mentor_linkedin_url']}}" target="_blank">
-               <div class="linkedin item"><i class="fab fa-linkedin"></i></div></a>
-             </div>
-          </div>
-          <h3>{{params['4_mentor_name']}}</h3>
-    </div>
-</div>
-</div>
-</body>
-</html>
+    </section>
+{% endblock %}

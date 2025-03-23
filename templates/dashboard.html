@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - MMD App{% endblock %}
+
+{% block content %}
+    <section class="dashboard-container">
+        <h2>Prediction History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Prediction</th>
+                    <th>Certainty</th>
+                    <th>Timestamp</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                    <tr>
+                        <td><img src="{{ url_for('static', filename=record.image_path) }}" alt="Predicted Image" class="dashboard-image"></td>
+                        <td>{{ record.prediction }}</td>
+                        <td>{{ record.certainty }}%</td>
+                        <td>{{ record.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('delete_prediction', id=record.id) }}" onsubmit="return confirmDelete(event);">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault(); // Prevent form submission
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    event.target.submit(); // Submit the form
+                }
+            });
+        }
+    </script>
+{% endblock %}
