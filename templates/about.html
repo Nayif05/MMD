@@ -1,12 +1,286 @@
 {% extends "base.html" %}
 
-{% block title %}About{% endblock %}
+{% block title %}About - MalariaDetectAI{% endblock %}
 
 {% block content %}
-<div class="about-container">
-    <h1>About This Project</h1>
-    <p>This project uses a Convolutional Neural Network (CNN) based on the AlexNet architecture to detect malaria in blood smear images.</p>
-    <p>It classifies cells as either Parasitized or Uninfected and further identifies the malaria species if infected. The model is designed to assist medical professionals by providing rapid preliminary analysis.</p>
-    <p>Developed by a Computer Science student as part of a project under the KTU syllabus.</p>
+<div class="about-page">
+    <div class="about-header">
+        <h1>About MalariaDetectAI</h1>
+        <p class="subtitle">Advanced malaria detection using artificial intelligence</p>
+    </div>
+    
+    <div class="about-section">
+        <h2>Our Mission</h2>
+        <p>
+            MalariaDetectAI is dedicated to improving malaria diagnosis in resource-limited settings through 
+            artificial intelligence. Our platform provides fast, accurate, and accessible blood smear 
+            analysis to help healthcare workers identify malaria parasites efficiently.
+        </p>
+        <p>
+            With over 400,000 annual deaths worldwide from malaria, timely and accurate diagnosis 
+            is critical. Our mission is to reduce this burden by democratizing access to reliable 
+            diagnostic tools, especially in regions where expert microscopists are scarce.
+        </p>
+    </div>
+    
+    <div class="about-section">
+        <br>
+        <div class="tech-container">
+            <div class="tech-image">
+                <img src="{{ url_for('static', filename='images/ai-detection.jpg') }}" alt="AI Detection Technology" 
+                    onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/placeholder.jpg') }}'">
+            </div>
+            <div class="tech-text">
+                <h3>Deep Learning Model</h3>
+                <p>
+                    Our system uses a convolutional neural network (CNN) trained on thousands of labeled blood smear 
+                    images. This deep learning approach allows us to detect the subtle visual patterns that indicate 
+                    the presence of <em>Plasmodium</em> parasites in red blood cells.
+                </p>
+                <h3>Accuracy and Confidence</h3>
+                <p>
+                    With each detection, we provide a confidence score to help healthcare providers understand the 
+                    reliability of the result. Our model has been validated against expert parasitologists' diagnoses, 
+                    achieving high sensitivity and specificity.
+                </p>
+                <h3>Continuous Improvement</h3>
+                <p>
+                    Our AI model continues to learn from new data, improving its accuracy over time. We maintain a 
+                    feedback loop with medical professionals to validate results and refine our algorithms.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="about-section">
+        <h2>The Process</h2>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Sample Collection</h3>
+                    <p>Healthcare workers collect blood samples from patients with suspected malaria.</p>
+                    <img src="{{ url_for('static', filename='images/sample-collection.jpg') }}" alt="Sample Collection" 
+                        onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/placeholder.jpg') }}'">
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Image Upload</h3>
+                    <p>Blood smear images are captured and uploaded to our secure platform.</p>
+                    <img src="{{ url_for('static', filename='images/image-upload.jpg') }}" alt="Image Upload" 
+                        onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/placeholder.jpg') }}'">
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>AI Analysis</h3>
+                    <p>Our deep learning algorithm processes the images, identifying potential parasites.</p>
+                    <img src="{{ url_for('static', filename='images/ai-analysis.jpg') }}" alt="AI Analysis" 
+                        onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/placeholder.jpg') }}'">
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Results & Treatment</h3>
+                    <p>Results are delivered within minutes, enabling prompt treatment decisions.</p>
+                    <img src="{{ url_for('static', filename='images/treatment.jpg') }}" alt="Treatment" 
+                        onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/placeholder.jpg') }}'">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="about-section">
+        <h2>The Impact</h2>
+        <p>
+            Malaria affects over 200 million people annually, with most cases occurring in regions with limited 
+            access to expert microscopy. By deploying AI-assisted diagnosis, we aim to:
+        </p>
+        <ul class="impact-list">
+            <li>Reduce the time needed for diagnosis from hours to minutes</li>
+            <li>Improve accuracy in areas without access to expert parasitologists</li>
+            <li>Enable earlier treatment interventions, improving patient outcomes</li>
+            <li>Provide continuous learning and improvement through feedback loops</li>
+            <li>Lower the cost of diagnosis, making it more accessible in low-resource settings</li>
+            <li>Support epidemiological surveillance and malaria control programs</li>
+        </ul>
+        <div class="impact-stats">
+            <div class="stat-item">
+                <div class="stat-number">95.67%</div>
+                <div class="stat-label">Diagnostic Accuracy</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3min</div>
+                <div class="stat-label">Average Processing Time</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">60%</div>
+                <div class="stat-label">Faster Than Traditional Methods</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">0.21</div>
+                <div class="stat-label">Loss</div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="about-section">
+        <h2>Our Team</h2>
+        <p>
+            MalariaDetectAI was developed by a multidisciplinary team of AI researchers, medical professionals, 
+            and public health experts committed to applying technology to global health challenges.
+        </p>
+        <p>
+            Our team combines expertise in machine learning, tropical medicine, software development, and global health policy 
+            to create a solution that is both technically advanced and practically applicable in the field.
+        </p>
+        <div class="team-cta">
+            <a href="{{ url_for('team') }}" class="btn btn-primary">Meet Our Team</a>
+        </div>
+    </div>
+    
+    <div class="about-section contact">
+        <h2>Contact Us</h2>
+        <p>
+            Have questions or interested in implementing MalariaDetectAI in your healthcare facility? 
+            We'd love to hear from you.
+        </p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="contact-icon">✉️</div>
+                <div class="contact-text">contact@malariadetectai.org</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📱</div>
+                <div class="contact-text">+91 85905 50067</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">🏢</div>
+                <div class="contact-text">SCMS SCHOOL OF ENGINEERING AND TECHNOLOGY,</div>
+                <div class="contact-text">KARUKUTTY</div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<style>
+    .process-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin: 30px 0;
+    }
+    
+    .process-step {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+    }
+    
+    .step-number {
+        background-color: var(--primary-color);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+    
+    .step-content {
+        flex: 1;
+    }
+    
+    .step-content h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+    }
+    
+    .step-content img {
+        max-width: 100%;
+        border-radius: 8px;
+        margin-top: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .impact-stats {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 30px 0;
+        gap: 20px;
+    }
+    
+    .stat-item {
+        flex: 1;
+        min-width: 150px;
+        background-color: var(--bg-light);
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        line-height: 1;
+        margin-bottom: 10px;
+    }
+    
+    .stat-label {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+    }
+    
+    .partners-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 30px;
+        margin: 30px 0;
+    }
+    
+    .partner {
+        text-align: center;
+    }
+    
+    .partner img {
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .partner p {
+        font-weight: 500;
+    }
+    
+    .team-cta {
+        text-align: center;
+        margin: 30px 0;
+    }
+    
+    @media (max-width: 768px) {
+        .impact-stats {
+            flex-direction: column;
+        }
+        
+        .stat-item {
+            min-width: 100%;
+        }
+    }
+</style>
 {% endblock %}

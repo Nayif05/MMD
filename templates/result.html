@@ -1,15 +1,81 @@
 {% extends "base.html" %}
 
-{% block title %}Result - MMD App{% endblock %}
+{% block title %}Detection Result - MalariaDetectAI{% endblock %}
 
 {% block content %}
-    <section class="result-container">
-        <h2>Prediction Result</h2>
-        <div class="result">
-            <img src="{{ url_for('static', filename=image_path) }}" alt="Uploaded Image">
-            <p><strong>Prediction:</strong> {{ prediction }}</p>
-            <p><strong>Certainty:</strong> {{ certainty }}%</p>
+<div class="result-container">
+    <h2>Detection Result</h2>
+    
+    <div class="result-box">
+        <div class="result-image-container">
+            <img src="{{ url_for('static', filename=image_path) }}" alt="Blood smear image" class="result-image">
         </div>
-        <a href="{{ url_for('input_form') }}" class="btn">Upload Another Image</a>
-    </section>
+        
+        <div class="result-details-box">
+            <div class="result-status-large {{ result.lower() }}">
+                {{ result }}
+            </div>
+            
+            <div class="confidence-meter">
+                <div class="confidence-label">Confidence: {{ "%.2f"|format(confidence) }}%</div>
+                <div class="progress-bar">
+                    <div class="progress-value" style="width: {{ confidence }}%"></div>
+                </div>
+            </div>
+            
+            <div class="result-explanation">
+                {% if result == "Parasitized" %}
+                <p><strong>Interpretation:</strong> This sample shows signs of malaria parasite infection.</p>
+                <p>The AI has detected characteristics consistent with malaria parasite presence in the blood cells.</p>
+                {% else %}
+                <p><strong>Interpretation:</strong> No malaria parasites detected in this sample.</p>
+                <p>The AI analysis suggests this blood sample does not contain malaria parasites.</p>
+                {% endif %}
+            </div>
+
+            <!-- Previous code remains the same until the ai-feedback section -->
+            <div class="ai-feedback">
+                <h3>Medical Guidance</h3>
+                <div class="feedback-content">
+                    {% for line in ai_feedback.split('\n') %}
+                        {% if line %}
+                        <div class="feedback-item">
+                            {% set parts = line.split(':', 1) %}
+                            <span class="feedback-number"><strong>{{ parts[0] }}:</strong></span>
+                            <span class="feedback-text">{{ parts[1] if parts|length > 1 else '' }}</span>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            
+            <p class="disclaimer">Note: This is an AI-assisted diagnosis and should be confirmed by clinical expertise.</p>
+            
+            <div class="result-actions">
+                <a href="{{ url_for('detect') }}" class="btn btn-primary">New Detection</a>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-outline">Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .ai-feedback {
+        margin-top: 2rem;
+        padding: 1rem;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #1EAEDB;
+    }
+    
+    .ai-feedback h3 {
+        color: #0e7fd0;
+        margin-bottom: 0.5rem;
+    }
+    
+    .feedback-content {
+        line-height: 1.6;
+    }
+</style>
 {% endblock %}

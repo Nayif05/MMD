@@ -3,38 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}MMD App{% endblock %}</title>
+    <title>{% block title %}MalariaDetectAI{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script></head>
+    {% block extra_css %}{% endblock %}
+    <style>
+        .login-btn {
+            background-color: #1EAEDB !important;
+            color: white !important;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .logout-btn {
+            background-color: #ea384c !important;
+            color: white !important;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+    </style>
+</head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('landing_page') }}">Home</a></li>
-                {% if 'username' in session %}
-                    <li><a href="{{ url_for('input_form') }}">Predict</a></li>
-                    <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                {% else %}
-                    <li><a href="{{ url_for('login') }}">Login</a></li>
-                    <li><a href="{{ url_for('signup') }}">Signup</a></li>
-                {% endif %}
-                <li><a href="{{ url_for('team') }}">Team</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <div class="logo">
+                <h1><a href="{{ url_for('index') }}">MalariaDetectAI</a></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    {% if 'user_id' in session %}
+                        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                        <li><a href="{{ url_for('detect') }}">Detect</a></li>
+                        <li><a href="{{ url_for('logout') }}" class="logout-btn">Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('login') }}" class="login-btn">Login</a></li>
+                    {% endif %}
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="{{ url_for('team') }}">Our Team</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
+
+    <div class="messages">
+        <div class="container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+
     <main>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="flash {{ category }}">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-        {% block content %}{% endblock %}
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
     </main>
+
     <footer>
-        <p>&copy; 2023 MMD App. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2025 MalariaDetectAI. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
     </footer>
+
+    {% block scripts %}{% endblock %}
 </body>
 </html>

@@ -1,0 +1,101 @@
+
+{% extends "base.html" %}
+
+{% block title %}Detect Malaria - MalariaDetectAI{% endblock %}
+
+{% block content %}
+<div class="detect-container">
+    <h2>Upload Blood Smear Image</h2>
+    <div class="upload-card">
+        <form method="post" enctype="multipart/form-data" action="{{ url_for('detect') }}">
+            <div class="drop-zone">
+                <div class="drop-zone-prompt">
+                    <div class="upload-icon">📁</div>
+                    <p>Drag & drop your image here or click to browse</p>
+                    <p class="file-types">PNG, JPG, JPEG or GIF</p>
+                </div>
+                <input type="file" name="image" id="image-upload" accept="image/*" required>
+            </div>
+            <div id="preview-container" class="preview-container" style="display: none;">
+                <img id="image-preview" src="#" alt="Preview">
+                <button type="button" id="remove-image" class="btn btn-outline btn-sm">Remove</button>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Detect Malaria</button>
+        </form>
+    </div>
+    <div class="detect-info">
+        <h3>For Best Results:</h3>
+        <ul>
+            <li>Use clear, high-resolution microscope images</li>
+            <li>Ensure proper lighting and focusing</li>
+            <li>Include adequate field of cells</li>
+            <li>Avoid images with staining artifacts</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const uploadInput = document.getElementById('image-upload');
+        const previewContainer = document.getElementById('preview-container');
+        const preview = document.getElementById('image-preview');
+        const removeButton = document.getElementById('remove-image');
+        const dropZone = document.querySelector('.drop-zone');
+        
+        // Handle file selection
+        uploadInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                    dropZone.classList.add('has-file');
+                }
+                
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Remove selected file
+        removeButton.addEventListener('click', function() {
+            uploadInput.value = '';
+            previewContainer.style.display = 'none';
+            dropZone.classList.remove('has-file');
+        });
+        
+        // Drag and drop functionality
+        ['dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            });
+        });
+        
+        dropZone.addEventListener('dragover', function() {
+            this.classList.add('dragover');
+        });
+        
+        dropZone.addEventListener('dragleave', function() {
+            this.classList.remove('dragover');
+        });
+        
+        dropZone.addEventListener('drop', function(e) {
+            this.classList.remove('dragover');
+            uploadInput.files = e.dataTransfer.files;
+            
+            // Trigger change event
+            const event = new Event('change');
+            uploadInput.dispatchEvent(event);
+        });
+        
+        // Click on drop zone to trigger file selection
+        dropZone.addEventListener('click', function() {
+            uploadInput.click();
+        });
+    });
+</script>
+{% endblock %}

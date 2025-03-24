@@ -1,26 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>image-predictor-haven</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
 
-    <meta property="og:title" content="Lovable Generated Project" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+{% extends "base.html" %}
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+{% block title %}MalariaDetectAI - AI-Powered Malaria Detection{% endblock %}
 
-  <body>
-    <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>AI-Powered Malaria Detection</h1>
+        <p>Quickly and accurately detect malaria parasites in blood smear images using our state-of-the-art deep learning technology.</p>
+        {% if 'user_id' in session %}
+            <a href="{{ url_for('detect') }}" class="btn btn-primary">Start Detection</a>
+        {% else %}
+            <a href="{{ url_for('signup') }}" class="btn btn-primary">Get Started</a>
+            <a href="{{ url_for('login') }}" class="btn btn-outline">Login</a>
+        {% endif %}
+    </div>
+    <div class="hero-image">
+        <img src="{{ url_for('static', filename='images/hero-image.png') }}" alt="Malaria Detection">
+    </div>
+</section>
+
+<section class="features">
+    <h2 class="section-title">Why Choose MalariaDetectAI?</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🔬</div>
+            <h3>High Accuracy</h3>
+            <p>Our AI model achieves over 95% accuracy in identifying malaria parasites.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Fast Results</h3>
+            <p>Get detection results in seconds, not hours or days.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Detailed Analysis</h3>
+            <p>Receive confidence scores and visual indicators of detected parasites.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Secure & Private</h3>
+            <p>Your data and results are encrypted and always remain private.</p>
+        </div>
+    </div>
+</section>
+
+<section class="how-it-works">
+    <h2 class="section-title">How It Works</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="step-number">1</div>
+            <h3>Upload Image</h3>
+            <p>Upload a blood smear microscope image to our platform.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <h3>AI Analysis</h3>
+            <p>Our deep learning algorithm analyzes the image for malaria parasites.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <h3>View Results</h3>
+            <p>Get instant results with detection confidence and save for later reference.</p>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to improve malaria diagnosis?</h2>
+        <p>Join thousands of healthcare professionals already using MalariaDetectAI.</p>
+        {% if 'user_id' in session %}
+            <a href="{{ url_for('detect') }}" class="btn btn-primary">Go to Detection</a>
+        {% else %}
+            <a href="{{ url_for('signup') }}" class="btn btn-primary">Sign Up Now</a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

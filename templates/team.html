@@ -1,26 +1,53 @@
+
 {% extends "base.html" %}
 
-{% block title %}Team - MMD App{% endblock %}
+{% block title %}Our Team - MalariaDetectAI{% endblock %}
 
 {% block content %}
-    <section class="team-container">
-        <h2>Our Team</h2>
-        <div class="team-members">
-            <div class="member">
-                <img src="{{ url_for('static', filename='images/member1.jpg') }}" alt="Member 1">
-                <h3>John Doe</h3>
-                <p>Lead Developer</p>
+<div class="team-container">
+    <h2 class="section-title">Meet Our Team</h2>
+    <div class="team-grid">
+
+        <div class="team-member">
+            <div class="member-image">
+                <img src="{{ url_for('static', filename='images/team/team1.jpg') }}" alt="Nayif Muhammed">
             </div>
-            <div class="member">
-                <img src="{{ url_for('static', filename='images/member2.jpg') }}" alt="Member 2">
-                <h3>Jane Smith</h3>
-                <p>Data Scientist</p>
-            </div>
-            <div class="member">
-                <img src="{{ url_for('static', filename='images/member3.jpg') }}" alt="Member 3">
-                <h3>Mike Johnson</h3>
-                <p>UI/UX Designer</p>
-            </div>
+            <h3>Nayif Muhammed</h3>
+            <p class="member-role">Team Member</p>
         </div>
-    </section>
+        
+        <div class="team-member">
+            <div class="member-image">
+                <img src="{{ url_for('static', filename='images/team/team2.jpg') }}" alt="Nabeel">
+            </div>
+            <h3>Nabeel</h3>
+            <p class="member-role">Team Member</p>
+        </div>
+        
+        <div class="team-member">
+            <div class="member-image">
+                <img src="{{ url_for('static', filename='images/team/team3.jpg') }}" alt="Nandhana">
+            </div>
+            <h3>Nandhana</h3>
+            <p class="member-role">Team Member</p>
+        </div>
+        
+        <div class="team-member">
+            <div class="member-image">
+                <img src="{{ url_for('static', filename='images/team/team4.jpg') }}" alt="Rini Poly">
+            </div>
+            <h3>Rini Poly</h3>
+            <p class="member-role">Team Member</p>
+        </div>  
+        
+        <div class="team-member">
+            <div class="member-image">
+                <img src="{{ url_for('static', filename='images/team/guide.jpg') }}" alt="Ms. Doney Daniel">
+            </div>
+            <h3>Ms. Doney Daniel</h3>
+            <p class="member-role">Project Guide</p>
+        </div>
+
+    </div>
+</div>
 {% endblock %}

@@ -1,21 +1,26 @@
+
 {% extends "base.html" %}
 
-{% block title %}Login - MMD App{% endblock %}
+{% block title %}Login - MalariaDetectAI{% endblock %}
 
 {% block content %}
-    <section class="form-container">
-        <h2>Login</h2>
-        <form method="POST" action="{{ url_for('login') }}">
+<div class="auth-container">
+    <div class="auth-card">
+        <h2>Login to Your Account</h2>
+        <form method="post" action="{{ url_for('login') }}">
             <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <button type="submit" class="btn">Login</button>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
         </form>
-        <p>Don't have an account? <a href="{{ url_for('signup') }}">Signup</a></p>
-    </section>
+        <div class="auth-footer">
+            <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+        </div>
+    </div>
+</div>
 {% endblock %}
