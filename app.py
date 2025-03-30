@@ -87,6 +87,13 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max upload
 # Ensure upload directory exists
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
+# Add this before initializing SQLAlchemy
+database_url = os.getenv('DATABASE_URL', 'postgresql://postgres:Nayifcm%402003@localhost:5432/MMD')
+# Replace postgres:// with postgresql:// if necessary
+if database_url.startswith("postgres://"):
+    database_url = database_url.replace("postgres://", "postgresql://", 1)
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+
 # Initialize SQLAlchemy
 db = SQLAlchemy(app)
 
