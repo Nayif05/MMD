@@ -17,6 +17,21 @@ import uuid
 import google.generativeai as genai
 # Add this with your other imports
 
+import requests
+
+MODEL_URL = "https://drive.google.com/file/d/1MqHYo28I1Ja2AzgAspepnH1tNcx1ImyX/view?usp=drive_link"
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "alexnet.h5")
+
+def download_model():
+    if not os.path.exists(MODEL_PATH):
+        response = requests.get(MODEL_URL, stream=True)
+        with open(MODEL_PATH, "wb") as file:
+            for chunk in response.iter_content(chunk_size=8192):
+                file.write(chunk)
+
+# Download the model if it does not exist
+download_model()
+
 # Configure Gemini API
 genai.configure(api_key='AIzaSyAT0HpKPtW3wqQ8a7m5kG9Z0ju6X6PvQzI')
 best_model = "models/gemini-1.5-pro-latest"
