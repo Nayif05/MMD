@@ -1,12 +1,9 @@
-from flask import Flask, request, jsonify, send_from_directory, render_template, redirect, url_for, flash, session
-from flask_cors import CORS
+from flask import Flask, request, jsonify, render_template, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime, timedelta
-import jwt
+from datetime import datetime
 import os
-import cv2
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image
