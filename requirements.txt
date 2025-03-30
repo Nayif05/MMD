@@ -7,3 +7,4 @@ tensorflow
 google-generativeai
 psycopg2-binary
 gunicorn
+huggingface_hub
